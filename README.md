@@ -10,7 +10,7 @@
 1. Python 3.8 이상  
 2. 필수 라이브러리 설치
    ```bash
-   pip install httpx python-dotenv
+   pip install -r requirements.txt
    ```
 
 ---
