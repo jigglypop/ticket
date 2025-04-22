@@ -41,7 +41,8 @@ SEAT_NAME=A1                          # 예약할 좌석 이름 (예: A1)
 터미널에서 프로젝트 루트로 이동 후:
 
 ```bash
-python book_macro.py
+python main.py
+
 ```
 
 - 로그인이 완료되면 설정한 시각(`TARGET_DATE` + `TARGET_TIME`)까지  

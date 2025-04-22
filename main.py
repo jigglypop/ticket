@@ -1,5 +1,3 @@
-# book_macro.py
-
 import os
 import time
 import asyncio
@@ -16,15 +14,20 @@ TARGET_DATE = os.getenv("TARGET_DATE")      # YYYY-MM-DD
 TARGET_TIME = os.getenv("TARGET_TIME")      # HH:MM:SS
 SEAT_NAME   = os.getenv("SEAT_NAME")
 
+# URL
+MAIN_URL = os.getenv("MAIN_URL")
+LOGIN_URL = os.getenv("LOGIN_URL")
+CSRF_URL = os.getenv("CSRF_URL")
+
 # 2) 로그인 함수
 async def login(client: httpx.AsyncClient):
     # (1) CSRF 토큰 획득
-    resp = await client.get("https://ticketlink.kakao.com/login")
+    resp = await client.get(CSRF_URL)
     csrf = resp.headers.get("x-csrf-token") or resp.cookies.get("csrf_token")
     # (2) 로그인 요청
     payload = {"email": EMAIL, "password": PASSWORD}
     headers = {"x-csrf-token": csrf}
-    await client.post("https://ticketlink.kakao.com/api/v1/auth", json=payload, headers=headers)
+    await client.post(LOGIN_URL, json=payload, headers=headers)
     print("[+] 로그인 완료")
 
 # 3) 좌석 조회 폴링
